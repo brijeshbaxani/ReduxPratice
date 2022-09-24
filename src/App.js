@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./Componments/Navbar/Navbar";
+import Details from "./Componments/Details/Details";
+import Company from "./Componments/Company/Company";
+import Employ from "./Componments/Employ/Employ";
+import CompanyDetailsCard from "./Componments/CompanyDetailsCard/CompanyDetailsCard";
+import { Provider } from "react-redux";
+import store from "./store";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Details />}></Route>
+          <Route path="/company" element={<Company />}></Route>
+          <Route path="/employ" element={<Employ />}></Route>
+          <Route path="/company-details/:id" element={<CompanyDetailsCard />}
+          ></Route>
+        </Routes>
+      </div>
+    </Provider>
   );
 }
 
